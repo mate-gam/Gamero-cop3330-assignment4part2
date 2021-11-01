@@ -1,0 +1,12 @@
+@startuml
+class ItemInListController{
+public TextArea txtboxItemTitle
+public TextArea txtboxDueDate
+public TextArea txtboxItemDescription
+public Button btnCreateItem
+==
+.. Create the Item In List ..
++ void createItem(ActionEvent actionEvent)
+}
+
+@enduml

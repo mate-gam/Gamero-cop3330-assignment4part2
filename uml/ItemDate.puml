@@ -2,10 +2,10 @@
 class ItemDate{
 String date
 ==
-.. Starts the Scene ..
-+ start(Stage stage)
-.. Starts Application ..
-+ main(String args[])
+.. Get Date ..
++ String getDate()
+.. Set Title ..
++ void setDate(String date)
 }
 
 @enduml

@@ -1,0 +1,11 @@
+@startuml
+class ItemDescription{
+String description
+==
+.. Get Description ..
++ String getTDescription()
+.. Set Description ..
++ void setDescription(String description)
+}
+
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class Itemlist{
+String title
+==
+.. Get Title ..
++ String getTitle()
+.. Set Title ..
++ void setTitle(String title)
+}
+
+@enduml

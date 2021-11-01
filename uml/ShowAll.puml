@@ -1,0 +1,12 @@
+@startuml
+class ShowAll{
+TableColumn tableColumn
+CheckBoxTableCell checkBoxTableCell
+==
+.. Get Show ALl of the Rows ..
++ TableColumn getShowAll()
+.. Set Show All ..
++ void setShowAll()
+}
+
+@enduml

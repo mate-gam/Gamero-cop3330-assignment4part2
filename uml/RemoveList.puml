@@ -1,0 +1,9 @@
+@startuml
+class RemoveList{
+TableView tableView
+==
+.. Remove The List From TableView ..
++ TableView removeLists()
+}
+
+@enduml

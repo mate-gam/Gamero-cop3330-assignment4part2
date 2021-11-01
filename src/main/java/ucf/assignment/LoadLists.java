@@ -9,7 +9,7 @@ public class LoadLists
         //inside the current list they are viewing
         return CSVText;
     }
-    void setCSVText(String csvText)
+    void setCSVText(String CSVText)
     {
         //sets the csvtext from file user chose to String csvText
     }

@@ -1,0 +1,11 @@
+@startuml
+class LoadLists{
+String CSVFileText
+==
+.. Get CSV File Text Format ..
++ String getCSVFileText()
+.. Set CSV Text Format ..
++ void setCSVText(String CSVText)
+}
+
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+class mainController{
+public Button btnCreateListMain;
+public Button btnDeleteToDoList;
+public Button btnSaveAllList;
+public Button btnLoadAllLists;
+public TableView tableViewMain;
+public TableColumn colToDoList;
+public TableColumn colViewList;
+public TableColumn colCheck;
+private Button bntViewList;
+==
+.. Button to create List ..
++ public void createList(ActionEvent actionEvent)
+.. Button to Delete Checked Lists ..
++ public void deleteCheckedList(ActionEvent actionEvent)
+.. Button to Save All Lists ..
++ public void saveAllTodoList(ActionEvent actionEvent)
+.. Button to Load All Lists ..
++ public void loadAllLists(ActionEvent actionEvent)
+}
+
+@enduml

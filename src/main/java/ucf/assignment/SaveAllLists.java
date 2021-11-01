@@ -13,9 +13,4 @@ public class SaveAllLists
         //gets the formatted String from setSaveItems
         return this.formattedLists = formattedLists;
     }
-
-    void saveToCSVFile()
-    {
-        //Save the items to a csv File
-    }
 }

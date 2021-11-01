@@ -1,0 +1,11 @@
+@startuml
+class SaveAllLists{
+String formattedLists
+==
+.. Get CSV File Text Format ..
++ String getSaveItems()
+.. Set CSV Text Format ..
++ void setSaveLists(String saveLists)
+}
+
+@enduml

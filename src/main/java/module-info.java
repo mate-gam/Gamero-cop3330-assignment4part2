@@ -1,4 +1,4 @@
-module ucf.assignment.gamerocop3330assignment4 {
+module ucf.assignment {
     requires javafx.controls;
     requires javafx.fxml;
 
