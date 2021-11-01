@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignment.CreateListController">
+   <children>
+      <TextArea fx:id="txtboxNameList" layoutX="177.0" layoutY="77.0" prefHeight="53.0" prefWidth="248.0" promptText="Name of To Do List">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </TextArea>
+      <Text layoutX="215.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name Of List" textAlignment="CENTER" wrappingWidth="170.9830722808838">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnCreateNewList" layoutX="246.0" layoutY="165.0" mnemonicParsing="false" onAction="#createList" prefHeight="35.0" prefWidth="109.0" text="Create" />
+   </children>
+</AnchorPane>

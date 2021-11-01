@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignment.ViewListController">
+   <children>
+      <TableView fx:id="tableView" layoutX="213.0" layoutY="48.0" prefHeight="351.0" prefWidth="368.0">
+        <columns>
+          <TableColumn prefWidth="123.0" text="Name" />
+          <TableColumn prefWidth="79.0" text="Date" />
+            <TableColumn minWidth="0.0" prefWidth="51.0" text="Check" />
+            <TableColumn prefWidth="53.0" text="Delete" />
+            <TableColumn prefWidth="43.0" text="Edit" />
+        </columns>
+      </TableView>
+      <Button layoutX="42.0" layoutY="200.0" mnemonicParsing="false" onAction="#showCompletedItems" prefHeight="29.0" prefWidth="140.0" text="Show Completed" />
+      <Button layoutX="41.0" layoutY="239.0" mnemonicParsing="false" onAction="#showUncompleted" prefHeight="29.0" prefWidth="140.0" text="Show Uncompleted" />
+      <Button layoutX="40.0" layoutY="79.0" mnemonicParsing="false" onAction="#addNewItem" prefHeight="29.0" prefWidth="140.0" text="Add New Item" />
+      <Button layoutX="40.0" layoutY="119.0" mnemonicParsing="false" onAction="#deleteNewItem" prefHeight="29.0" prefWidth="140.0" text="Delete Item" />
+      <Button layoutX="40.0" layoutY="279.0" mnemonicParsing="false" onAction="#saveAllItems" prefHeight="29.0" prefWidth="140.0" text="Save All Items" />
+      <Button layoutX="41.0" layoutY="322.0" mnemonicParsing="false" onAction="#loadAllItems" prefHeight="29.0" prefWidth="140.0" text="Load All Items" />
+      <Button layoutX="40.0" layoutY="161.0" mnemonicParsing="false" onAction="#showAllItems" prefHeight="29.0" prefWidth="140.0" text="Show All Items" />
+      <TextField fx:id="txtboxTitle" layoutX="165.0" layoutY="11.0" onAction="#editTitleName" prefHeight="37.0" prefWidth="270.0" />
+   </children>
+</AnchorPane>
