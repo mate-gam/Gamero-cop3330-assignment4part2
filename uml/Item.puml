@@ -1,0 +1,11 @@
+@startuml
+class Item{
+String dueDate
+String description
+String title
+==
+.. Item Composition ..
++ void item()
+}
+
+@enduml

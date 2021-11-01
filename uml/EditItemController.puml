@@ -1,0 +1,12 @@
+@startuml
+class EditItemController{
+    public TextArea txtboxEditDescription
+    public TextArea txtboxEditDate
+    public TextArea txtboxEditItemName
+    public Button btnEditItem;
+==
+.. Edit Item Button Pressed ..
++ editItem(ActionEvent actionEvent)
+}
+
+@enduml

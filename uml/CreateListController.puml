@@ -1,0 +1,10 @@
+@startuml
+class CreateListController{
+    public TextArea txtboxNameList;
+    public Button btnCreateNewList;
+==
+.. Creates list when Button pressed ..
++ createList(ActionEvent actionEvent)
+}
+
+@enduml

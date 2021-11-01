@@ -1,7 +1,6 @@
 @startuml
-class App_extends_Application{
-int numberOfNames
-ArrayList<String> names
+class ItemDate{
+String date
 ==
 .. Starts the Scene ..
 + start(Stage stage)
