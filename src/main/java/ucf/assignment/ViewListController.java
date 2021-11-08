@@ -1,23 +1,48 @@
 package ucf.assignment;
 
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.CheckBoxTableCell;
-import javafx.stage.Stage;
 
-public class ViewListController
-{
-    public TableView tableView;
-    public TextField txtboxTitle;
-    private Button btnEdit; //btn in tableview to edit the Item
-    private CheckBoxTableCell deleteCheck; //checkbox in table to delete
-    private CheckBoxTableCell checkCheck; //checkbox in table to complete
-    private Scene viewListScene;
-    public void showCompletedItems(ActionEvent actionEvent) {
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.*;
+
+public class ViewListController implements Initializable {
+    public TableView<Item> tableView;
+    public TableColumn<Item, String> nameCol;
+    public TableColumn<Item, String> dateCol;
+    public TableColumn<Item, String> checkCol;
+    public TableColumn<Item, String> deleteCol;
+    public TableColumn<Item, String> editCol;
+    public TextField txtboxListTitle;
+    public TextArea txtboxItemTitle;
+    public TextArea txtboxDueDate;
+    public TextArea txtboxDescription;
+
+    public ObservableList<Item> data =
+            FXCollections.observableArrayList();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        nameCol.setCellValueFactory(
+                new PropertyValueFactory<>("title"));
+
+        dateCol.setCellValueFactory(
+                new PropertyValueFactory<>("dueDate"));
+
+        checkCol.setCellValueFactory(
+                new PropertyValueFactory<>("description"));
+
+        tableView.setItems(data);
+    }
+
+    public void showCompletedItems(ActionEvent actionEvent) throws IOException {
         //shows all the check items in the tableview
     }
 
@@ -25,11 +50,15 @@ public class ViewListController
         //shows all the unchecked items in the cell
     }
 
-    public void addNewItem(ActionEvent actionEvent) {
+    public void addNewItem(ActionEvent actionEvent) throws IOException {
         //add new Item in the List
         //changes scene to itemInList to add new Item
-        Stage viewListStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        viewListStage.setScene(viewListScene);
+        Item item = new Item(txtboxItemTitle.getText(), txtboxDueDate.getText(), txtboxDescription.getText());
+        data.add(item);
+        tableView.setItems(data);
+        txtboxItemTitle.setText("");
+        txtboxDueDate.setText("");
+        txtboxDescription.setText("");
     }
 
     public void deleteNewItem(ActionEvent actionEvent) {
@@ -47,13 +76,10 @@ public class ViewListController
     public void showAllItems(ActionEvent actionEvent) {
         //shows all the items regardless if check column is checked
     }
+
     public void editTitleName(ActionEvent inputMethodEvent) {
         //changes name of list
         //textbox text is the old name
         //when changed the the new name is saved and changed everywhere
-    }
-
-    public void setCreateItemScene(Scene scene) {
-        viewListScene = scene;
     }
 }

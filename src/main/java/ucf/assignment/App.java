@@ -14,10 +14,6 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         //Instantiates scenes
-        //Getting loader and pane for createItem
-        FXMLLoader createItemPaneLoader = new FXMLLoader(App.class.getResource("createItem.fxml"));
-        Parent createItemPane = createItemPaneLoader.load();
-        Scene createItemScene = new Scene(createItemPane, 600, 400);
 
         //Getting loader and pane for editItem
         FXMLLoader editItemPaneLoader = new FXMLLoader(App.class.getResource("editItem.fxml"));
@@ -27,15 +23,7 @@ public class App extends Application {
         //Getting loader and pane for viewList
         FXMLLoader viewListPaneLoader = new FXMLLoader(App.class.getResource("viewList.fxml"));
         Parent viewListPane = viewListPaneLoader.load();
-        Scene viewListScene = new Scene(viewListPane, 600, 400);
-
-        //Sending the viewList scene to ItemInListController
-        ItemInListController itemInListController = createItemPaneLoader.getController();
-        itemInListController.setViewListScene(viewListScene);
-
-        //Sending the createItem scene to ViewListController
-        ViewListController viewListController = viewListPaneLoader.getController();
-        viewListController.setCreateItemScene(createItemScene);
+        Scene viewListScene = new Scene(viewListPane, 713, 603);
 
         stage.setTitle("To Do List");
         stage.setScene(viewListScene);
