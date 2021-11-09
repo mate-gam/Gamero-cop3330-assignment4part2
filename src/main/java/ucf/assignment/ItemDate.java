@@ -2,14 +2,19 @@ package ucf.assignment;
 
 public class ItemDate
 {
-    String date;
-    public String getDate()
+    String dueDate;
+    public ItemDate(String dueDate)
     {
-        return this.date;
+        this.dueDate = dueDate;
     }
-    public void setDate(String date)
+
+    public String getDueDate()
     {
-        this.date = date;
+        return this.dueDate;
+    }
+    public void setDueDate(String date)
+    {
+        this.dueDate = dueDate;
     }
 }
 

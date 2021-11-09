@@ -5,7 +5,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignment.EditItemController">
    <children>
-      <Label alignment="TOP_LEFT" layoutX="207.0" layoutY="19.0" prefHeight="26.0" prefWidth="142.0" text="Change Item Name" />
+      <Label fx:id="label" alignment="TOP_LEFT" layoutX="207.0" layoutY="19.0" prefHeight="26.0" prefWidth="142.0" text="Change Item Name" />
       <TextArea fx:id="txtboxEditDescription" layoutX="133.0" layoutY="125.0" prefHeight="108.0" prefWidth="291.0" />
       <Label layoutX="207.0" layoutY="248.0" prefHeight="26.0" prefWidth="142.0" text="Change Date Due" />
       <TextArea fx:id="txtboxEditDate" layoutX="150.0" layoutY="286.0" prefHeight="40.0" prefWidth="256.0" />
