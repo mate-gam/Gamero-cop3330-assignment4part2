@@ -218,4 +218,10 @@ public class ViewListController implements Initializable {
         //textbox text is the old name
         //when changed the the new name is saved and changed everywhere
     }
+
+    public void removeAllItems(ActionEvent actionEvent) {
+        data.clear();
+        unchecked.clear();
+        checked.clear();
+    }
 }
