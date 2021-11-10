@@ -91,26 +91,51 @@ public class ViewListController implements Initializable {
 
     public void showCompletedItems(ActionEvent actionEvent) throws IOException {
         //shows all the check items in the tableview
-        for (Item item : data)
+        int counter = 0;
+        for (int k = 0; k < data.size(); k++)
         {
-            if(item.getCheck().isSelected())
+            for (int i = 0; i < checked.size(); i++)
             {
-                unchecked.add(item);
+                if (data.get(k) == checked.get(i))
+                {
+                    counter++;
+                }
             }
+            if (counter == 0)
+            {
+                if (data.get(k).getCheck().isSelected())
+                {
+                    checked.add(data.get(k));
+                    System.out.println("ITS CHECKED");
+                }
+            }
+
         }
-        data.removeAll(unchecked);
+        tableView.setItems(checked);
     }
 
     public void showUncompleted(ActionEvent actionEvent) {
         //shows all the unchecked items in the cell
-        for (Item item : data)
+        int counter = 0;
+        for (int k = 0; k < data.size(); k++)
         {
-            if(!item.getCheck().isSelected())
+            for(int i = 0; i < unchecked.size();i++)
             {
-                checked.add(item);
+                if (data.get(k) == unchecked.get(i))
+                {
+                    counter++;
+                }
+            }
+            if(counter == 0)
+            {
+                if (!data.get(k).getCheck().isSelected())
+                {
+                    unchecked.add(data.get(k));
+                    System.out.println("ITS UNCHECKED");
+                }
             }
         }
-        data.removeAll(checked);
+        tableView.setItems(unchecked);
     }
     public void warningStage() throws IOException {
         FXMLLoader viewListPaneLoader = new FXMLLoader(App.class.getResource("errorPage.fxml"));
@@ -175,9 +200,6 @@ public class ViewListController implements Initializable {
             txtboxDescription.setText("");
         }
     }
-    public void deleteNewItem(ActionEvent actionEvent) {
-        //deletes the item that was check in the delete column
-    }
     public void saveAllItems(ActionEvent actionEvent) {
         //save all the items to an external csv file
     }
@@ -188,8 +210,7 @@ public class ViewListController implements Initializable {
 
     public void showAllItems(ActionEvent actionEvent) {
         //shows all the items regardless if check column is checked
-        data.addAll(checked);
-        data.addAll(unchecked);
+        tableView.setItems(data);
     }
 
     public void editTitleName(ActionEvent inputMethodEvent) {
