@@ -32,6 +32,10 @@ public class ViewListController implements Initializable {
 
     public ObservableList<Item> data =
             FXCollections.observableArrayList();
+    public ObservableList<Item> checked =
+            FXCollections.observableArrayList();
+    public ObservableList<Item> unchecked =
+            FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -87,10 +91,26 @@ public class ViewListController implements Initializable {
 
     public void showCompletedItems(ActionEvent actionEvent) throws IOException {
         //shows all the check items in the tableview
+        for (Item item : data)
+        {
+            if(item.getCheck().isSelected())
+            {
+                unchecked.add(item);
+            }
+        }
+        data.removeAll(unchecked);
     }
 
     public void showUncompleted(ActionEvent actionEvent) {
         //shows all the unchecked items in the cell
+        for (Item item : data)
+        {
+            if(!item.getCheck().isSelected())
+            {
+                checked.add(item);
+            }
+        }
+        data.removeAll(checked);
     }
     public void warningStage() throws IOException {
         FXMLLoader viewListPaneLoader = new FXMLLoader(App.class.getResource("errorPage.fxml"));
@@ -128,7 +148,8 @@ public class ViewListController implements Initializable {
                 data.remove(item);
             });
             buttonEdit.get(buttonEdit.size()-1).setOnAction(e -> {
-                String itemTitle = "Test";
+                Item item1 = data.get(buttonEdit.size()-1);
+                String itemTitle = item1.getTitle();
 
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("editItem.fxml"));
@@ -167,6 +188,8 @@ public class ViewListController implements Initializable {
 
     public void showAllItems(ActionEvent actionEvent) {
         //shows all the items regardless if check column is checked
+        data.addAll(checked);
+        data.addAll(unchecked);
     }
 
     public void editTitleName(ActionEvent inputMethodEvent) {
