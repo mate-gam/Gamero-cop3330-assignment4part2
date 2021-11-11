@@ -10,10 +10,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class ViewListController implements Initializable {
@@ -29,6 +34,7 @@ public class ViewListController implements Initializable {
     public TextArea txtboxDescription;
     ArrayList<Button> buttonEdit = new ArrayList<>();
     ArrayList<Button> buttonDelete = new ArrayList<>();
+    FileChooser fileChoose = new FileChooser();
 
     public ObservableList<Item> data =
             FXCollections.observableArrayList();
@@ -39,6 +45,7 @@ public class ViewListController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        fileChoose.setInitialDirectory(new File("C:\\Users\\gamer\\OneDrive\\Documents\\School"));
         nameCol.setCellValueFactory(
                 new PropertyValueFactory<>("title"));
 
@@ -106,7 +113,6 @@ public class ViewListController implements Initializable {
                 if (data.get(k).getCheck().isSelected())
                 {
                     checked.add(data.get(k));
-                    System.out.println("ITS CHECKED");
                 }
             }
 
@@ -131,7 +137,6 @@ public class ViewListController implements Initializable {
                 if (!data.get(k).getCheck().isSelected())
                 {
                     unchecked.add(data.get(k));
-                    System.out.println("ITS UNCHECKED");
                 }
             }
         }
@@ -200,23 +205,63 @@ public class ViewListController implements Initializable {
             txtboxDescription.setText("");
         }
     }
-    public void saveAllItems(ActionEvent actionEvent) {
+    public void saveAllItems(ActionEvent actionEvent) throws IOException {
         //save all the items to an external csv file
+        boolean bool = true;
+        Writer writer = null;
+        File file = null;
+        while (bool)
+        {
+            file = fileChoose.showOpenDialog(new Stage());
+
+            String fileName = file.getName();
+            String extension = fileName.substring(fileName.lastIndexOf("."));
+            if(extension.equals(".csv"));
+            {
+                bool = false;
+            }
+        }
+        writer = new BufferedWriter(new FileWriter(file));
+        for (Item item : data)
+        {
+            String itemValue = item.getTitle() + "," + item.getDueDate() + "," + item.getDescription();
+            writer.write(itemValue);
+        }
+        writer.flush();
+        writer.close();
     }
 
-    public void loadAllItems(ActionEvent actionEvent) {
+    public void loadAllItems(ActionEvent actionEvent) throws IOException {
         //loads all the items from an external csv file
+        File file = fileChoose.showOpenDialog(new Stage());
+        String fileName = file.getPath();
+        Path pathToFile = Paths.get(fileName);
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII))
+        {
+            String line = br.readLine();
+
+            while (line != null)
+            {
+                buttonDelete.add(new Button());
+                buttonEdit.add(new Button());
+                CheckBox checkBox = new CheckBox();
+
+                String[] itemAttributes = line.split(",");
+                Item item = new Item(itemAttributes[0], itemAttributes[1], itemAttributes[2],
+                        buttonEdit.get(buttonEdit.size()-1), buttonDelete.get(buttonDelete.size()-1), checkBox);
+                buttonDelete.get(buttonDelete.size()-1).setOnAction(e -> {
+                    data.remove(item);
+                });
+                data.add(item);
+                line = br.readLine();
+            }
+        }
+        //add items in csv file to tableview
     }
 
     public void showAllItems(ActionEvent actionEvent) {
         //shows all the items regardless if check column is checked
         tableView.setItems(data);
-    }
-
-    public void editTitleName(ActionEvent inputMethodEvent) {
-        //changes name of list
-        //textbox text is the old name
-        //when changed the the new name is saved and changed everywhere
     }
 
     public void removeAllItems(ActionEvent actionEvent) {
