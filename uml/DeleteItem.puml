@@ -1,9 +1,0 @@
-@startuml
-class DeleteItem{
-TableView tableView;
-==
-.. Deletes Row ..
-+ TableView deleteItem()
-}
-
-@enduml

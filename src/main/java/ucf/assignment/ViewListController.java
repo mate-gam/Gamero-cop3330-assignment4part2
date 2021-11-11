@@ -24,7 +24,7 @@ import java.util.*;
 public class ViewListController implements Initializable {
     public TableView<Item> tableView;
     public TableColumn<Item, String> nameCol;
-    public TableColumn<ItemDate, String> dateCol;
+    public TableColumn<Item, String> dateCol;
     public TableColumn<Item, String> checkCol;
     public TableColumn<Item, String> deleteCol;
     public TableColumn<Item, String> editCol;
@@ -151,10 +151,6 @@ public class ViewListController implements Initializable {
         newStage.setTitle("Edit Item");
         newStage.setScene(viewListScene);
         newStage.show();
-    }
-
-    public static void editStage() throws IOException {
-
     }
 
     public void addNewItem(ActionEvent actionEvent) throws IOException {
