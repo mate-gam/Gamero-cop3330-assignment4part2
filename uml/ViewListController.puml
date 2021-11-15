@@ -1,11 +1,44 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+class App_extends_Application{
+    public TableView<Item> tableView;
+    public TableColumn<Item, String> nameCol;
+    public TableColumn<Item, String> dateCol;
+    public TableColumn<Item, String> checkCol;
+    public TableColumn<Item, String> deleteCol;
+    public TableColumn<Item, String> editCol;
+    public TextField txtboxListTitle;
+    public TextArea txtboxItemTitle;
+    public TextArea txtboxDueDate;
+    public TextArea txtboxDescription;
+    ArrayList<Button> buttonEdit = new ArrayList<>();
+    ArrayList<Button> buttonDelete = new ArrayList<>();
+    FileChooser fileChoose = new FileChooser();
+    public ObservableList<Item> data
+    public ObservableList<Item> checked
+    public ObservableList<Item> unchecked
+==
+.. Initialize ..
++ public void initialize(URL location, ResourceBundle resources)
+.. Validate The Date ..
++ private boolean validDate(String date)
+.. Validate the Description ..
++ private boolean validDescription(String description)
+.. Show Only Complete Items ..
++ public void showCompletedItems(ActionEvent actionEvent)
+.. Show Only Uncompleted Items ..
++ public void showUncompleted(ActionEvent actionEvent)
+.. Pop up Error Page ..
++ public void warningStage()
+.. Add New Item To Table ..
++  public void addNewItem(ActionEvent actionEvent)
+.. Save All Items ..
++ public void saveAllItems(ActionEvent actionEvent)
+.. Load All Items ..
++ public void loadAllItems(ActionEvent actionEvent)
+.. Show All The Items ..
++ public void showAllItems(ActionEvent actionEvent)
+.. Removes All The Items ..
++  public void removeAllItems(ActionEvent actionEvent)
+}
 
-autonumber
-
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
 @enduml

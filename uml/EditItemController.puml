@@ -1,12 +1,17 @@
 @startuml
 class EditItemController{
-    public TextArea txtboxEditDescription
+public TextArea txtboxEditDescription
     public TextArea txtboxEditDate
     public TextArea txtboxEditItemName
-    public Button btnEditItem;
+    public Button btnEditItem
+    public Label label
 ==
 .. Edit Item Button Pressed ..
 + editItem(ActionEvent actionEvent)
+..Set textbox Item Name ..
++ public void setTxtboxEditItemName (String txtboxEditItemName)
+.. Get textbox Item Name ..
++ public String getTxtboxEditItemName()
 }
 
 @enduml

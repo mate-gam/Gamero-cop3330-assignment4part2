@@ -14,12 +14,6 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         //Instantiates scenes
-
-        //Getting loader and pane for editItem
-        FXMLLoader editItemPaneLoader = new FXMLLoader(App.class.getResource("editItem.fxml"));
-        Parent editItemPane = editItemPaneLoader.load();
-        Scene editItemScene = new Scene(editItemPane, 600, 400);
-
         //Getting loader and pane for viewList
         FXMLLoader viewListPaneLoader = new FXMLLoader(App.class.getResource("viewList.fxml"));
         Parent viewListPane = viewListPaneLoader.load();

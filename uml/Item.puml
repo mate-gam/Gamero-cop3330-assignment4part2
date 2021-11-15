@@ -1,11 +1,28 @@
 @startuml
 class Item{
-String dueDate
-String description
-String title
+    private String title;
+    private String dueDate;
+    private String description;
+    private Button edit;
+    private Button delete;
+    private CheckBox check;
 ==
-.. Item Composition ..
-+ void item()
+.. New Item ..
++ public Item(String title, String dueDate, String description, Button edit, Button delete, CheckBox check)
+.. Setters ..
++    public void setTitle(String title)
++ public void setDueDate(String dueDate)
++ public void setDescription(String description)
++ public void setEdit(Button edit)
++ public void setDelete(Button delete)
++ public void setCheck(CheckBox check)
+.. Getters ..
++ public String getTitle()
++public String getDueDate()
++ public String getDescription()
++public Button getEdit()
++  public Button getDelete()
++public CheckBox getCheck()
 }
 
 @enduml

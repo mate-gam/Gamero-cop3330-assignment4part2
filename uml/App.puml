@@ -1,7 +1,5 @@
 @startuml
 class App_extends_Application{
-int numberOfNames
-ArrayList<String> names
 ==
 .. Starts the Scene ..
 + start(Stage stage)
