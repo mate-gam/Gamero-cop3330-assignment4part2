@@ -65,7 +65,7 @@ public class ViewListController implements Initializable {
     }
 
     //Checking for valid Date
-    private boolean validDate(String date)
+    public Boolean validDate(String date)
     {
         if (date.length() != 10)
             return false;
@@ -91,7 +91,7 @@ public class ViewListController implements Initializable {
         return true;
     }
 
-    private boolean validDescription(String description)
+    public boolean validDescription(String description)
     {
         return description.length() >= 1 && description.length() <= 256;
     }
