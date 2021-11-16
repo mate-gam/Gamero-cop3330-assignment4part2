@@ -1,5 +1,7 @@
 package ucf.assignment;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,5 +18,20 @@ class ViewListControllerTest {
     void validDescription() {
         ViewListController viewListController = new ViewListController();
         assertTrue(true, String.valueOf(viewListController.validDescription("sdfg")));
+    }
+
+    @Test
+    void addNewItem() {
+        ViewListController viewListController = new ViewListController();
+    }
+
+    @Test
+    void remove()
+    {
+        ViewListController viewListController = new ViewListController();
+        ObservableList<Item> data = FXCollections.observableArrayList();
+        ObservableList<Item> clear = FXCollections.observableArrayList();
+        data.add(new Item());
+        assertEquals(clear, viewListController.remove(data));
     }
 }

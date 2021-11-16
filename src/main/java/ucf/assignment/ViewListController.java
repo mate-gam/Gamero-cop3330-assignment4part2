@@ -153,6 +153,39 @@ public class ViewListController implements Initializable {
         newStage.show();
     }
 
+    Item addNewItem ()
+    {
+        buttonEdit.add(new Button());
+        buttonDelete.add(new Button());
+        CheckBox checkBox = new CheckBox();
+
+        Item item = new Item(txtboxItemTitle.getText(), txtboxDueDate.getText(),txtboxDescription.getText(),
+                buttonEdit.get(buttonEdit.size()-1), buttonDelete.get(buttonDelete.size()-1), checkBox);
+        buttonDelete.get(buttonDelete.size()-1).setOnAction(e -> {
+            data.remove(item);
+        });
+        buttonEdit.get(buttonEdit.size()-1).setOnAction(e -> {
+            Item item1 = data.get(buttonEdit.size()-1);
+            String itemTitle = item1.getTitle();
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("editItem.fxml"));
+            try{
+                loader.load();
+            } catch (IOException e1){
+                System.out.println(e1);
+            }
+            EditItemController editItemController = loader.getController();
+            editItemController.myFunction(itemTitle);
+
+            Parent parent = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(parent));
+            stage.showAndWait();
+        });
+        return item;
+    }
+
     public void addNewItem(ActionEvent actionEvent) throws IOException {
         //add new Item in the List
         //changes scene to itemInList to add new Item
@@ -164,34 +197,7 @@ public class ViewListController implements Initializable {
 
         if(validDate && validDescription)
         {
-            buttonEdit.add(new Button());
-            buttonDelete.add(new Button());
-            CheckBox checkBox = new CheckBox();
-
-            Item item = new Item(txtboxItemTitle.getText(), txtboxDueDate.getText(),txtboxDescription.getText(),
-                    buttonEdit.get(buttonEdit.size()-1), buttonDelete.get(buttonDelete.size()-1), checkBox);
-            buttonDelete.get(buttonDelete.size()-1).setOnAction(e -> {
-                data.remove(item);
-            });
-            buttonEdit.get(buttonEdit.size()-1).setOnAction(e -> {
-                Item item1 = data.get(buttonEdit.size()-1);
-                String itemTitle = item1.getTitle();
-
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("editItem.fxml"));
-                try{
-                    loader.load();
-                } catch (IOException e1){
-                    System.out.println(e1);
-                }
-                EditItemController editItemController = loader.getController();
-                editItemController.myFunction(itemTitle);
-
-                Parent parent = loader.getRoot();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(parent));
-                stage.showAndWait();
-            });
+            Item item = addNewItem();
             data.add(item);
             tableView.setItems(data);
 
@@ -260,9 +266,16 @@ public class ViewListController implements Initializable {
         tableView.setItems(data);
     }
 
+    public ObservableList<Item> remove(ObservableList<Item> clearList)
+    {
+        clearList.clear();
+        return clearList;
+    }
+
     public void removeAllItems(ActionEvent actionEvent) {
-        data.clear();
-        unchecked.clear();
-        checked.clear();
+        ViewListController viewListController = new ViewListController();
+        viewListController.remove(data);
+        viewListController.remove(checked);
+        viewListController.remove(unchecked);
     }
 }
