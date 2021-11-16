@@ -14,8 +14,7 @@ public class Item
     private Button delete;
     private CheckBox check;
 
-    public Item(String title, String dueDate, String description, Button edit, Button delete, CheckBox check) {
-        this.title = title;
+    public Item(String dueDate, String description, Button edit, Button delete, CheckBox check) {
         this.dueDate = dueDate;
         this.description = description;
         this.edit = edit;
@@ -24,12 +23,12 @@ public class Item
         this.delete.setText("Delete");
         this.check = check;
     }
-
+    //For Testing
     public Item()
     {
 
     }
-
+    //Setters and getters
     public String getTitle()
     {
         return title;

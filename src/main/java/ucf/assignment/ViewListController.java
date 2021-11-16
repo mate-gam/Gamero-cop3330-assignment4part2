@@ -29,7 +29,6 @@ public class ViewListController implements Initializable {
     public TableColumn<Item, String> deleteCol;
     public TableColumn<Item, String> editCol;
     public TextField txtboxListTitle;
-    public TextArea txtboxItemTitle;
     public TextArea txtboxDueDate;
     public TextArea txtboxDescription;
     ArrayList<Button> buttonEdit = new ArrayList<>();
@@ -43,11 +42,12 @@ public class ViewListController implements Initializable {
     public ObservableList<Item> unchecked =
             FXCollections.observableArrayList();
 
+    //Initialize the cell factories of the observable list
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fileChoose.setInitialDirectory(new File("C:\\Users\\gamer\\OneDrive\\Documents\\School"));
         nameCol.setCellValueFactory(
-                new PropertyValueFactory<>("title"));
+                new PropertyValueFactory<>("description"));
 
         dateCol.setCellValueFactory(
                 new PropertyValueFactory<>("dueDate"));
@@ -93,6 +93,7 @@ public class ViewListController implements Initializable {
 
     public boolean validDescription(String description)
     {
+        //Checks for valid description length
         return description.length() >= 1 && description.length() <= 256;
     }
 
@@ -159,14 +160,13 @@ public class ViewListController implements Initializable {
         buttonDelete.add(new Button());
         CheckBox checkBox = new CheckBox();
 
-        Item item = new Item(txtboxItemTitle.getText(), txtboxDueDate.getText(),txtboxDescription.getText(),
+        Item item = new Item(txtboxDueDate.getText(),txtboxDescription.getText(),
                 buttonEdit.get(buttonEdit.size()-1), buttonDelete.get(buttonDelete.size()-1), checkBox);
         buttonDelete.get(buttonDelete.size()-1).setOnAction(e -> {
             data.remove(item);
         });
         buttonEdit.get(buttonEdit.size()-1).setOnAction(e -> {
             Item item1 = data.get(buttonEdit.size()-1);
-            String itemTitle = item1.getTitle();
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("editItem.fxml"));
@@ -175,8 +175,6 @@ public class ViewListController implements Initializable {
             } catch (IOException e1){
                 System.out.println(e1);
             }
-            EditItemController editItemController = loader.getController();
-            editItemController.myFunction(itemTitle);
 
             Parent parent = loader.getRoot();
             Stage stage = new Stage();
@@ -202,7 +200,6 @@ public class ViewListController implements Initializable {
             tableView.setItems(data);
 
             //resets the txtbox to be empty
-            txtboxItemTitle.setText("");
             txtboxDueDate.setText("");
             txtboxDescription.setText("");
         }
@@ -249,7 +246,7 @@ public class ViewListController implements Initializable {
                 CheckBox checkBox = new CheckBox();
 
                 String[] itemAttributes = line.split(",");
-                Item item = new Item(itemAttributes[0], itemAttributes[1], itemAttributes[2],
+                Item item = new Item(itemAttributes[0], itemAttributes[1],
                         buttonEdit.get(buttonEdit.size()-1), buttonDelete.get(buttonDelete.size()-1), checkBox);
                 buttonDelete.get(buttonDelete.size()-1).setOnAction(e -> {
                     data.remove(item);
